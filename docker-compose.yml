@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   db:
     image: mysql:8.0
@@ -8,12 +9,12 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
- web:
+
+  web:
     build: .
     restart: always
     ports:
       - "5000:5000"
     depends_on:
       - db
-    # FIX: Tells Python to wait for MySQL and then run main.py right from the root
     command: sh -c "sleep 15 && python main.py"
