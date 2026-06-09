@@ -10,10 +10,8 @@ RUN apt-get update && apt-get install -y \
 
 COPY . .
 
-# FIX: Look for requirements.txt directly in the root directory
 RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
 
-# FIX: Run main.py directly from the root directory
-CMD ["python", "main.py"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
